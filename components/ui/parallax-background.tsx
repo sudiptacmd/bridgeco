@@ -1,31 +1,37 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { motion, useTransform, type MotionValue } from "framer-motion"
+import { useEffect, useState } from "react";
+import { motion, useTransform, type MotionValue } from "framer-motion";
 
 interface ParallaxBackgroundProps {
-  scrollYProgress: MotionValue<number>
+  scrollYProgress: MotionValue<number>;
 }
 
-export default function ParallaxBackground({ scrollYProgress }: ParallaxBackgroundProps) {
-  const [isMounted, setIsMounted] = useState(false)
+export default function ParallaxBackground({
+  scrollYProgress,
+}: ParallaxBackgroundProps) {
+  const [isMounted, setIsMounted] = useState(false);
 
   // Move all useTransform hooks to the top level
-  const backgroundY1 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
-  const backgroundY2 = useTransform(scrollYProgress, [0, 1], ["0%", "25%"])
-  const backgroundY3 = useTransform(scrollYProgress, [0, 1], ["0%", "10%"])
+  const backgroundY1 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const backgroundY2 = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const backgroundY3 = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
-  const opacity1 = useTransform(scrollYProgress, [0, 0.3, 0.6, 1], [1, 0.6, 0.3, 0])
-  const opacity2 = useTransform(scrollYProgress, [0, 0.5, 1], [0.7, 0.4, 0])
-  const opacity3 = useTransform(scrollYProgress, [0, 0.7, 1], [0.5, 0.3, 0])
+  const opacity1 = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.6, 1],
+    [1, 0.6, 0.3, 0]
+  );
+  const opacity2 = useTransform(scrollYProgress, [0, 0.5, 1], [0.7, 0.4, 0]);
+  const opacity3 = useTransform(scrollYProgress, [0, 0.7, 1], [0.5, 0.3, 0]);
 
-  const gridY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
+  const gridY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
+    setIsMounted(true);
+  }, []);
 
-  if (!isMounted) return null
+  if (!isMounted) return null;
 
   return (
     <>
@@ -78,7 +84,7 @@ export default function ParallaxBackground({ scrollYProgress }: ParallaxBackgrou
         />
 
         {/* Bridge icon background */}
-        <motion.div
+        {/* <motion.div
           className="absolute inset-0 bg-bridge opacity-[0.03]"
           style={{
             backgroundImage: "url('/images/logo.png')",
@@ -87,7 +93,7 @@ export default function ParallaxBackground({ scrollYProgress }: ParallaxBackgrou
             backgroundRepeat: "no-repeat",
             y: backgroundY2,
           }}
-        />
+        /> */}
       </div>
 
       {/* Grid pattern overlay */}
@@ -101,5 +107,5 @@ export default function ParallaxBackground({ scrollYProgress }: ParallaxBackgrou
         }}
       />
     </>
-  )
+  );
 }
