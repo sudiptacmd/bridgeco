@@ -52,7 +52,7 @@ export default function AnimatedBackground({
   if (!isMounted) return null;
 
   // Determine number of objects based on reduced motion preference
-  const shapeCount = reducedMotion ? 15 : 30;
+  const shapeCount = reducedMotion ? 15 : 60;
   const dotCount = reducedMotion ? 15 : 30;
 
   return (
